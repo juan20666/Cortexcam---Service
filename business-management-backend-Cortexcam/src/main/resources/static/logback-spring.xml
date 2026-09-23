@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <conversionRule conversionWord="levelcolor"
+        class="com.datacenter.asset.infrastructure.tracing.LevelColorConverter" />
+
+    <logger name="feign" level="WARN" />
+    <logger name="com.netflix.discovery" level="WARN" />
+    <logger name="org.apache.catalina" level="OFF" additivity="false" />
+    <logger name="org.apache.coyote" level="OFF" additivity="false" />
+    <logger name="org.apache.tomcat" level="OFF" additivity="false" />
+    <logger
+        name="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver"
+        level="OFF" additivity="false" />
+    <logger name="org.springframework.boot.devtools"
+        level="OFF" additivity="false" />
+    <logger name="org.hibernate.SQL" level="WARN" />
+    <logger name="org.hibernate.orm.jdbc.bind" level="WARN" />
+
+    <springProfile name="dev,local,default,qa,test">
+
+        <appender name="CONSOLE"
+            class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%d{dd/MM/yyyy HH:mm:ss} %levelcolor(%-5level) [%X{traceId:-ASSET NO-TRACE}]
+                    %logger{0} - %msg%n%ex{3}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+            <immediateFlush>true</immediateFlush>
+        </appender>
+
+        <logger name="org.hibernate" level="WARN" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <logger name="com.zaxxer.hikari" level="WARN" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <logger name="org.springframework.boot.SpringApplication"
+            level="OFF" additivity="false" />
+        <logger name="org.springframework.boot.StartupInfoLogger"
+            level="OFF" additivity="false" />
+        <logger name="org.springframework.boot"
+            level="WARN" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <logger name="org.springframework"
+            level="WARN" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <logger name="org.springframework.boot.autoconfigure.security"
+            level="ERROR" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <logger name="org.hibernate.dialect"
+            level="ERROR" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <logger name="com.datacenter.asset.infrastructure.security"
+            level="INFO" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <logger name="com.datacenter.asset.AssetServiceApplication"
+            level="WARN" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+
+        <logger name="com.datacenter.asset"
+            level="DEBUG" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+
+        <logger name="com.datacenter.asset.infrastructure.tracing"
+            level="INFO" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+
+        <logger name="asset-service"
+            level="INFO" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+
+        <root level="WARN">
+            <appender-ref ref="CONSOLE" />
+        </root>
+
+    </springProfile>
+
+    <springProfile name="prod">
+
+        <appender name="JSON"
+            class="ch.qos.logback.core.ConsoleAppender">
+            <encoder
+                class="net.logstash.logback.encoder.LogstashEncoder">
+                <charset>UTF-8</charset>
+                <customFields>{"app":"asset-service"}</customFields>
+                <fieldNames>
+                    <timestamp>timestamp</timestamp>
+                    <message>message</message>
+                    <logger>logger</logger>
+                    <level>level</level>
+                </fieldNames>
+                <includeMdcKeyName>traceId</includeMdcKeyName>
+                <includeMdcKeyName>userId</includeMdcKeyName>
+                <throwableConverter
+                    class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                    <maxDepthPerCause>10</maxDepthPerCause>
+                    <rootCauseFirst>true</rootCauseFirst>
+                    <exclude>sun\.reflect\..*</exclude>
+                    <exclude>java\.lang\.reflect\..*</exclude>
+                    <exclude>org\.apache\.catalina\..*</exclude>
+                    <exclude>org\.apache\.coyote\..*</exclude>
+                    <exclude>org\.apache\.tomcat\..*</exclude>
+                    <exclude>org\.springframework\.web\..*</exclude>
+                    <exclude>org\.springframework\.security\..*</exclude>
+                    <exclude>org\.springframework\.aop\..*</exclude>
+                </throwableConverter>
+            </encoder>
+            <immediateFlush>true</immediateFlush>
+        </appender>
+
+        <logger name="org.hibernate" level="WARN" additivity="false">
+            <appender-ref ref="JSON" />
+        </logger>
+        <logger name="org.springframework.boot.SpringApplication"
+            level="OFF" additivity="false" />
+        <logger name="org.springframework.boot.StartupInfoLogger"
+            level="OFF" additivity="false" />
+        <logger name="org.springframework.boot"
+            level="WARN" additivity="false">
+            <appender-ref ref="JSON" />
+        </logger>
+        <logger name="org.springframework"
+            level="WARN" additivity="false">
+            <appender-ref ref="JSON" />
+        </logger>
+        <logger name="org.springframework.boot.autoconfigure.security"
+            level="ERROR" additivity="false">
+            <appender-ref ref="JSON" />
+        </logger>
+        <logger name="org.hibernate.dialect"
+            level="ERROR" additivity="false">
+            <appender-ref ref="JSON" />
+        </logger>
+        <logger name="com.datacenter.asset.infrastructure.security"
+            level="INFO" additivity="false">
+            <appender-ref ref="JSON" />
+        </logger>
+        <logger name="com.datacenter.asset.AssetServiceApplication"
+            level="WARN" additivity="false">
+            <appender-ref ref="JSON" />
+        </logger>
+        <logger name="com.datacenter.asset"
+            level="INFO" additivity="false">
+            <appender-ref ref="JSON" />
+        </logger>
+        <logger name="com.datacenter.asset.infrastructure.tracing"
+            level="INFO" additivity="false">
+            <appender-ref ref="JSON" />
+        </logger>
+        <logger name="asset-service"
+            level="INFO" additivity="false">
+            <appender-ref ref="JSON" />
+        </logger>
+
+        <root level="WARN">
+            <appender-ref ref="JSON" />
+        </root>
+
+    </springProfile>
+
+</configuration>
