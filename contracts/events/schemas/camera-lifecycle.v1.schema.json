@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cortexcam.com/schemas/camera-lifecycle.v1.json",
+  "title": "CameraLifecycle v1",
+  "description": "Evento del ciclo de vida de una cámara (registro, actualización, eliminación, estado).",
+  "type": "object",
+  "required": ["cameraId", "tenantId", "action", "occurredAt"],
+  "properties": {
+    "cameraId": { "type": "string", "format": "uuid" },
+    "tenantId": { "type": "string", "format": "uuid" },
+    "action": {
+      "type": "string",
+      "enum": ["REGISTERED", "UPDATED", "REMOVED", "WENT_ONLINE", "WENT_OFFLINE", "CREDENTIALS_ROTATED"]
+    },
+    "occurredAt": { "type": "string", "format": "date-time" },
+    "name": { "type": "string" },
+    "location": { "type": "string" },
+    "status": { "type": "string", "enum": ["ONLINE", "OFFLINE", "DISABLED"] },
+    "detectorSettings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "detectorType": { "type": "string", "enum": ["PERSON", "WEAPON", "VEHICLE", "PLATE"] },
+          "enabled": { "type": "boolean" },
+          "minConfidence": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    },
+    "zones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "polygon": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "x": { "type": "number", "minimum": 0, "maximum": 1 },
+                "y": { "type": "number", "minimum": 0, "maximum": 1 }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

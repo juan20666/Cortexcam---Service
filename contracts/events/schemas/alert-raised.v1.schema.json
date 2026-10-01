@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cortexcam.com/schemas/alert-raised.v1.json",
+  "title": "AlertRaised v1",
+  "description": "Evento emitido cuando una detección cumple las reglas para convertirse en alerta.",
+  "type": "object",
+  "required": ["alertId", "cameraId", "tenantId", "type", "severity", "raisedAt", "triggeringDetections"],
+  "properties": {
+    "alertId": { "type": "string", "format": "uuid" },
+    "cameraId": { "type": "string", "format": "uuid" },
+    "tenantId": { "type": "string", "format": "uuid" },
+    "type": { "type": "string", "enum": ["PERSON", "WEAPON", "VEHICLE", "PLATE", "COMPOSITE"] },
+    "severity": { "type": "string", "enum": ["INFO", "WARNING", "CRITICAL"] },
+    "raisedAt": { "type": "string", "format": "date-time" },
+    "triggeringDetections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["eventId", "frameId", "capturedAt"],
+        "properties": {
+          "eventId": { "type": "string", "format": "uuid" },
+          "frameId": { "type": "string", "format": "uuid" },
+          "capturedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  }
+}

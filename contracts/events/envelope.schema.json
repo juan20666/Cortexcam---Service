@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cortexcam.com/schemas/envelope.v1.json",
+  "title": "CortexCam CloudEvents Envelope",
+  "description": "Sobre común para todos los eventos de CortexCam, basado en CloudEvents 1.0",
+  "type": "object",
+  "required": ["specversion", "id", "type", "source", "time", "data"],
+  "properties": {
+    "specversion": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID v7 único del evento. Sirve para dedupe."
+    },
+    "type": {
+      "type": "string",
+      "pattern": "^cortexcam\\..+\\.v[0-9]+$",
+      "description": "Tipo del evento incluyendo versión (e.g. cortexcam.detection.person-detected.v1)"
+    },
+    "source": {
+      "type": "string",
+      "pattern": "^urn:cortexcam:.+$",
+      "description": "URN del servicio que emite el evento"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Entidad afectada (e.g. camera/<id>)"
+    },
+    "time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp ISO-8601 UTC del evento"
+    },
+    "datacontenttype": {
+      "type": "string",
+      "default": "application/json"
+    },
+    "tenantid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "ID del tenant (extensión CloudEvents, minúscula)"
+    },
+    "traceparent": {
+      "type": "string",
+      "description": "W3C Trace Context para propagación de trazas"
+    },
+    "data": {
+      "type": "object",
+      "description": "Payload específico del evento"
+    }
+  }
+}

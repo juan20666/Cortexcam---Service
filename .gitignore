@@ -1,0 +1,68 @@
+# ============================
+# CortexCam v2 — .gitignore
+# ============================
+
+# --- Secrets (NEVER commit) ---
+.env
+secrets/*.env
+!secrets/*.enc.env
+secrets/*.txt
+*.pem
+*.key
+
+# --- Java / Maven ---
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+.mvn/wrapper/maven-wrapper.jar
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+*.egg
+
+# --- Node / Frontend ---
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# --- ML / Models ---
+*.pt
+*.pth
+*.onnx
+*.engine
+*.trt
+ml/datasets/
+models/
+
+# --- IDE ---
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Docker ---
+docker-compose.override.yml
+
+# --- Coverage & Reports ---
+htmlcov/
+.coverage
+coverage/
+*.lcov
+jacoco.exec

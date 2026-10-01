@@ -1,0 +1,50 @@
+topics:
+  - name: cortexcam.camera.lifecycle.v1
+    producer: camera-service
+    consumers:
+      - ingestion-service
+      - person-detection-service
+      - weapon-detection-service
+      - vehicle-detection-service
+      - plate-recognition-service
+      - notification-service
+    partitions: 3
+    retention: compacted
+    key: cameraId
+
+  - name: cortexcam.ingestion.frames.v1
+    producer: ingestion-service
+    consumers:
+      - person-detection-service (group: person-detection.frames)
+      - weapon-detection-service (group: weapon-detection.frames)
+      - vehicle-detection-service (group: vehicle-detection.frames)
+      - plate-recognition-service (group: plate-recognition.frames)
+      - evidence-service (group: evidence.frames)
+    partitions: 6
+    retention: 60000 # 60 seconds
+    key: cameraId
+
+  - name: cortexcam.detection.person-detected.v1
+    producer: person-detection-service
+    consumers:
+      - alert-service (group: alert.detections)
+    partitions: 6
+    retention: 604800000 # 7 days
+    key: cameraId
+
+  - name: cortexcam.detection.weapon-detected.v1
+    producer: weapon-detection-service
+    consumers:
+      - alert-service (group: alert.detections)
+    partitions: 6
+    retention: 604800000 # 7 days
+    key: cameraId
+
+  - name: cortexcam.alert.raised.v1
+    producer: alert-service
+    consumers:
+      - notification-service (group: notification.alerts)
+      - evidence-service (group: evidence.alerts)
+    partitions: 3
+    retention: 2592000000 # 30 days
+    key: cameraId

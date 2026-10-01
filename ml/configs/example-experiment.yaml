@@ -1,0 +1,12 @@
+# Configuración de experimento de entrenamiento (ejemplo)
+model:
+  base: "yolov8n.pt"
+  name: "yolo26-cortexcam-weapons"
+dataset:
+  path: "datasets/weapons-v1"
+  format: "yolo"
+training:
+  epochs: 100
+  batch_size: 16
+  img_size: 640
+  device: "cuda:0"

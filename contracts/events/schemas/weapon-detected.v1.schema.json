@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cortexcam.com/schemas/weapon-detected.v1.json",
+  "title": "WeaponDetected v1",
+  "description": "Evento emitido cuando se detecta un arma en un frame.",
+  "type": "object",
+  "required": ["cameraId", "frameId", "capturedAt", "modelVersion", "detections"],
+  "properties": {
+    "cameraId": { "type": "string", "format": "uuid" },
+    "frameId": { "type": "string", "format": "uuid" },
+    "capturedAt": { "type": "string", "format": "date-time" },
+    "modelVersion": { "type": "string" },
+    "detections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "confidence", "box"],
+        "properties": {
+          "label": { "type": "string", "enum": ["handgun", "knife", "rifle", "shotgun"] },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "box": {
+            "type": "object",
+            "required": ["x1", "y1", "x2", "y2"],
+            "properties": {
+              "x1": { "type": "number", "minimum": 0, "maximum": 1 },
+              "y1": { "type": "number", "minimum": 0, "maximum": 1 },
+              "x2": { "type": "number", "minimum": 0, "maximum": 1 },
+              "y2": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          }
+        }
+      }
+    }
+  }
+}

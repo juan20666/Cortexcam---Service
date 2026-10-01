@@ -1,0 +1,26 @@
+{
+  "specversion": "1.0",
+  "id": "0192f3b4-7c1e-7a4e-9d0a-5f0c2a1b7e11",
+  "type": "cortexcam.alert.raised.v1",
+  "source": "urn:cortexcam:alert-service",
+  "subject": "camera/7e2b7a1a-3c55-4d4f-9a45-0d3b9f1e6c10",
+  "time": "2026-09-30T15:04:05.123Z",
+  "datacontenttype": "application/json",
+  "tenantid": "b1d3c0de-0000-4000-8000-000000000001",
+  "traceparent": "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01",
+  "data": {
+    "alertId": "0192f3b4-8d2f-4b5f-1a2b-3c4d5e6f7a8b",
+    "cameraId": "7e2b7a1a-3c55-4d4f-9a45-0d3b9f1e6c10",
+    "tenantId": "b1d3c0de-0000-4000-8000-000000000001",
+    "type": "PERSON",
+    "severity": "WARNING",
+    "raisedAt": "2026-09-30T15:04:05.100Z",
+    "triggeringDetections": [
+      {
+        "eventId": "0192f3b4-7c1e-7a4e-9d0a-5f0c2a1b7e05",
+        "frameId": "0192f3b4-7c1e-7a4e-9d0a-5f0c2a1b7e00",
+        "capturedAt": "2026-09-30T15:04:05.050Z"
+      }
+    ]
+  }
+}
