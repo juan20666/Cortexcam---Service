@@ -1,4 +1,4 @@
-package com.CortexcamService.infrastructure.config;
+package com.cortexcam.starter.config;
 
 import java.util.List;
 import org.springframework.boot.context.properties.ConfigurationProperties;

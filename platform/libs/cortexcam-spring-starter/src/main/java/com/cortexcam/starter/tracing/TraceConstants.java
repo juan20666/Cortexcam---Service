@@ -1,4 +1,4 @@
-package com.CortexcamService.infrastructure.tracing;
+package com.cortexcam.starter.tracing;
 
 public final class TraceConstants {
     public static final String TRACE_ID = "traceId";

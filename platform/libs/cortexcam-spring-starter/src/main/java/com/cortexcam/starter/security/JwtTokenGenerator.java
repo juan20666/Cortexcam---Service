@@ -1,4 +1,4 @@
-package com.CortexcamService.infrastructure.security;
+package com.cortexcam.starter.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;

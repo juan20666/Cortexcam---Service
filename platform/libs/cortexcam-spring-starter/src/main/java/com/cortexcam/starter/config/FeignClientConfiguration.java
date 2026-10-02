@@ -1,4 +1,4 @@
-package com.CortexcamService.infrastructure.config;
+package com.cortexcam.starter.config;
 
 import feign.Client;
 import feign.RequestInterceptor;

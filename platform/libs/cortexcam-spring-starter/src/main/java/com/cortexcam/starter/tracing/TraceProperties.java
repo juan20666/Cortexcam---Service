@@ -1,4 +1,4 @@
-package com.CortexcamService.infrastructure.tracing;
+package com.cortexcam.starter.tracing;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

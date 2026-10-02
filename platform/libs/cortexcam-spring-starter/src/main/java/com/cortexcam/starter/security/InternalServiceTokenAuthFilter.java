@@ -1,4 +1,4 @@
-package com.CortexcamService.infrastructure.security;
+package com.cortexcam.starter.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

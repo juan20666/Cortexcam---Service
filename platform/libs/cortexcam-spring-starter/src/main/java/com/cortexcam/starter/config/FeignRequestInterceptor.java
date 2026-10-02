@@ -1,6 +1,6 @@
-package com.CortexcamService.infrastructure.config;
+package com.cortexcam.starter.config;
 
-import com.CortexcamService.infrastructure.tracing.TraceIdProvider;
+import com.cortexcam.starter.tracing.TraceIdProvider;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import jakarta.servlet.http.HttpServletRequest;

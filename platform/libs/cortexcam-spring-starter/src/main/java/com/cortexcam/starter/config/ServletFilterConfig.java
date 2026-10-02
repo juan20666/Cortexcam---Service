@@ -1,7 +1,7 @@
-package com.CortexcamService.infrastructure.config;
+package com.cortexcam.starter.config;
 
-import com.CortexcamService.infrastructure.tracing.TraceIdFilter;
-import com.CortexcamService.infrastructure.tracing.TraceProperties;
+import com.cortexcam.starter.tracing.TraceIdFilter;
+import com.cortexcam.starter.tracing.TraceProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

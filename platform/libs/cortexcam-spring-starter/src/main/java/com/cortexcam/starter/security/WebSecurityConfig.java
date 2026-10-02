@@ -1,7 +1,7 @@
-package com.CortexcamService.infrastructure.security;
+package com.cortexcam.starter.security;
 
-import com.CortexcamService.infrastructure.config.CorsProperties;
-import com.CortexcamService.infrastructure.tracing.MutationLoggingFilter;
+import com.cortexcam.starter.config.CorsProperties;
+import com.cortexcam.starter.tracing.MutationLoggingFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

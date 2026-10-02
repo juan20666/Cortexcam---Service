@@ -1,4 +1,4 @@
-package com.CortexcamService.infrastructure.security;
+package com.cortexcam.starter.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -75,9 +75,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         Parsed p = parsed.get();
-        org.slf4j.MDC.put(com.CortexcamService.infrastructure.tracing.TraceConstants.USER_ID, p.userId());
+        org.slf4j.MDC.put(com.cortexcam.starter.tracing.TraceConstants.USER_ID, p.userId());
         if (p.companyId() != null && !p.companyId().isBlank()) {
-            org.slf4j.MDC.put(com.CortexcamService.infrastructure.tracing.TraceConstants.COMPANY_ID, p.companyId());
+            org.slf4j.MDC.put(com.cortexcam.starter.tracing.TraceConstants.COMPANY_ID, p.companyId());
         }
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                 new UserJwtPrincipal(p.userId(), p.email(), p.documentNumber()), null, p.authorities());

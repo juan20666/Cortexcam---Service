@@ -1,4 +1,4 @@
-package com.CortexcamService.infrastructure.security;
+package com.cortexcam.starter.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;

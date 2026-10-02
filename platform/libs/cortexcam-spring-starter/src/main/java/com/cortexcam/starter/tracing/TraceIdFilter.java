@@ -1,4 +1,4 @@
-package com.CortexcamService.infrastructure.tracing;
+package com.cortexcam.starter.tracing;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

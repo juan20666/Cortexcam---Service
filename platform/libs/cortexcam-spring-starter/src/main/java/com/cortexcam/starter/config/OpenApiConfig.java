@@ -1,4 +1,4 @@
-package com.CortexcamService.infrastructure.config;
+package com.cortexcam.starter.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
