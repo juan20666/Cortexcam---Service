@@ -11,11 +11,11 @@
         <relativePath />
     </parent>
 
-    <groupId>com.CortexcamService</groupId>
-    <artifactId>CortexcamService</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>CortexcamService</name>
-    <description>CortexcamService microservice</description>
+    <groupId>com.cortexcam.platform</groupId>
+    <artifactId>cortexcam-spring-starter</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Cortexcam Spring Starter</name>
+    <description>Starter library for CortexCam Spring Boot services</description>
 
     <properties>
         <!-- Actualizado a Java 21 LTS -->
@@ -201,7 +201,7 @@
 
     <build>
         <plugins>
-            <!-- Build Helper for generated sources -->
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -215,18 +215,21 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>${project.build.directory}/generated-sources/annotations</source>
+                                <source>
+                                    ${project.build.directory}/generated-sources/annotations
+                                </source>
                             </sources>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
 
-            <!-- Compiler with Lombok and MapStruct -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
+                    <release>${java.version}</release>
+
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -234,34 +237,27 @@
                             <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
+
                     <compilerArgs>
                         <arg>-processor</arg>
-                        <arg>lombok.launch.AnnotationProcessorHider$AnnotationProcessor</arg>
+                        <arg>
+                            lombok.launch.AnnotationProcessorHider$AnnotationProcessor
+                        </arg>
                     </compilerArgs>
-                    <release>${java.version}</release>
                 </configuration>
             </plugin>
 
-            <!-- Plugin Spring Boot -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.CortexcamService.CortexcamApplication</mainClass>
-                </configuration>
-            </plugin>
-
-            <!-- JaCoCo -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.13</version> <!-- JaCoCo 0.8.13 soporta Java 21 de forma nativa -->
+                <version>0.8.13</version>
                 <executions>
                     <execution>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
+
                     <execution>
                         <id>report</id>
                         <phase>verify</phase>
@@ -271,6 +267,7 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
 </project>

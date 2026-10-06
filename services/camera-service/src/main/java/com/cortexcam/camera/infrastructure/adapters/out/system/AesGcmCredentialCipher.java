@@ -31,6 +31,7 @@ public class AesGcmCredentialCipher implements CredentialCipherPort {
 
     @Override
     public EncryptedSecret encrypt(String plainText, String associatedData) {
+        if (plainText == null) return null;
         try {
             byte[] iv = new byte[GCM_IV_LENGTH_BYTE];
             new SecureRandom().nextBytes(iv);

@@ -1,0 +1,56 @@
+[project]
+name = "cortexcam-plate-recognition-service"
+version = "1.0.0"
+description = "Servicio de reconocimiento de placas para CortexCam"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.31.0",
+    "pydantic>=2.9.2",
+    "pydantic-settings>=2.5.2",
+    "confluent-kafka>=2.6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.3",
+    "pytest-asyncio>=0.24.0",
+    "import-linter>=2.1",
+    "ruff>=0.6.9",
+    "mypy>=1.11.2",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+
+[tool.importlinter]
+root_package = "plate_recognition"
+
+[[tool.importlinter.contracts]]
+name = "Arquitectura Hexagonal (Capas)"
+type = "layers"
+layers = [
+    "plate_recognition.infrastructure",
+    "plate_recognition.application",
+    "plate_recognition.domain",
+]
+
+[[tool.importlinter.contracts]]
+name = "Dominio Puro (Sin I/O ni frameworks)"
+type = "forbidden"
+source_modules = [
+    "plate_recognition.domain",
+]
+forbidden_modules = [
+    "fastapi",
+    "confluent_kafka",
+    "cv2",
+    "numpy",
+    "ultralytics",
+    "onnxruntime",
+]

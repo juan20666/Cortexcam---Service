@@ -2,9 +2,13 @@ package com.cortexcam.camera.application.usecase.command;
 
 import com.cortexcam.camera.application.port.in.camera.RegisterCameraUseCase;
 import com.cortexcam.camera.application.port.out.camera.*;
+import com.cortexcam.camera.application.port.out.shared.*;
 import com.cortexcam.camera.application.port.out.stream.StreamProvisioningPort;
 import com.cortexcam.camera.domain.model.camera.*;
 import com.cortexcam.camera.domain.model.shared.TenantId;
+
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,7 +57,7 @@ public class RegisterCameraService implements RegisterCameraUseCase {
                         command.host(),
                         command.port(),
                         command.path(),
-                        encryptedSecret
+                        Optional.ofNullable(encryptedSecret)
                 );
 
         // Crear agregado

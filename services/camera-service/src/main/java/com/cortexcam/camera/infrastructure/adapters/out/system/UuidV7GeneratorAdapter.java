@@ -1,6 +1,6 @@
 package com.cortexcam.camera.infrastructure.adapters.out.system;
 
-import com.cortexcam.camera.application.port.out.camera.IdGeneratorPort;
+import com.cortexcam.camera.application.port.out.shared.IdGeneratorPort;
 import org.springframework.stereotype.Component;
 import java.util.UUID;
 

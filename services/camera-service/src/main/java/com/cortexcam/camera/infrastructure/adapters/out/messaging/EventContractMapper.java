@@ -2,16 +2,16 @@ package com.cortexcam.camera.infrastructure.adapters.out.messaging;
 
 import com.cortexcam.camera.domain.event.CameraRegistered;
 import com.cortexcam.camera.domain.event.DomainEvent;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
 public class EventContractMapper {
 
-    private final ObjectMapper objectMapper;
+    private final JsonMapper objectMapper;
 
-    public EventContractMapper(ObjectMapper objectMapper) {
+    public EventContractMapper(JsonMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
 

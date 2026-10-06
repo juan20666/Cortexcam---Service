@@ -4,6 +4,9 @@ import com.cortexcam.camera.domain.model.camera.*;
 import com.cortexcam.camera.domain.model.shared.EncryptedSecret;
 import com.cortexcam.camera.domain.model.shared.TenantId;
 import com.cortexcam.camera.infrastructure.adapters.out.persistence.entity.camera.CameraJpaEntity;
+
+import java.util.Optional;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,16 +25,22 @@ public class CameraPersistenceMapper {
         entity.setStreamPath(stream.path());
         
         var creds = stream.credentials();
-        entity.setCredentialsKeyId(creds.keyId());
-        entity.setCredentialsIv(creds.iv());
-        entity.setCredentialsCiphertext(creds.cipherText());
+        if (creds.isPresent()) {
+            EncryptedSecret secret = creds.get();
+            entity.setCredentialsKeyId(secret.keyId());
+            entity.setCredentialsIv(secret.iv());
+            entity.setCredentialsCiphertext(secret.cipherText());
+        }
         
         return entity;
     }
 
     public Camera toDomain(CameraJpaEntity entity) {
-        var creds = new EncryptedSecret(entity.getCredentialsKeyId(), entity.getCredentialsIv(), entity.getCredentialsCiphertext());
-        var stream = new StreamSource(entity.getStreamHost(), entity.getStreamPort(), entity.getStreamPath(), creds);
+        EncryptedSecret creds = null;
+        if (entity.getCredentialsKeyId() != null && entity.getCredentialsIv() != null && entity.getCredentialsCiphertext() != null) {
+            creds = new EncryptedSecret(entity.getCredentialsKeyId(), entity.getCredentialsIv(), entity.getCredentialsCiphertext());
+        }
+        var stream = new StreamSource(entity.getStreamHost(), entity.getStreamPort(), entity.getStreamPath(), Optional.ofNullable(creds));
         
         return Camera.reconstitute(
             new CameraId(entity.getId()),

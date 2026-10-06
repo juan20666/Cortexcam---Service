@@ -1,6 +1,6 @@
 package com.cortexcam.camera.infrastructure.adapters.out.system;
 
-import com.cortexcam.camera.application.port.out.camera.ClockPort;
+import com.cortexcam.camera.application.port.out.shared.ClockPort;
 import org.springframework.stereotype.Component;
 import java.time.Instant;
 

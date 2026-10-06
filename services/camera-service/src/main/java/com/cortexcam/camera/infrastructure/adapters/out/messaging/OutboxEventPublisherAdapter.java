@@ -1,8 +1,10 @@
 package com.cortexcam.camera.infrastructure.adapters.out.messaging;
 
-import com.cortexcam.camera.application.port.out.camera.DomainEventPublisherPort;
-import com.cortexcam.camera.application.port.out.camera.IdGeneratorPort;
+import com.cortexcam.camera.application.port.out.shared.DomainEventPublisherPort;
+import com.cortexcam.camera.application.port.out.shared.IdGeneratorPort;
 import com.cortexcam.camera.domain.event.DomainEvent;
+import com.cortexcam.camera.infrastructure.adapters.out.persistence.entity.OutboxEntity;
+
 import org.springframework.stereotype.Component;
 
 import java.util.List;
